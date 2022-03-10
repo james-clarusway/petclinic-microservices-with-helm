@@ -118,7 +118,7 @@ pipeline {
             steps {
                 echo "Check if the ${APP_NAME} app is ready or not"
                 script {
-
+                    env.GRAND_MASTER_PUBLIC_IP = sh(script:"aws ec2 describe-instances --region ${AWS_REGION} --filters Name=tag-value,Values=grand-master Name=tag-value,Values=${APP_STACK_NAME} --query Reservations[*].Instances[*].[PublicIpAddress] --output text", returnStdout:true).trim()
                     while(true) {
                         try{
                             sh "curl -s ${GRAND_MASTER_PUBLIC_IP}:8080"
