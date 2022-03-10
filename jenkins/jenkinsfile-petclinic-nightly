@@ -84,7 +84,7 @@ pipeline {
 
                 script {
                     echo "Docker Grand Master is not UP and running yet."
-                    sleep 60
+                    sleep 300
                     env.id = sh(script: 'aws ec2 describe-instances --filters Name=tag-value,Values=grand-master Name=tag-value,Values=${APP_STACK_NAME} Name=instance-state-name,Values=running --query Reservations[*].Instances[*].[InstanceId] --output text',  returnStdout:true).trim()
                     sh 'aws ec2 wait instance-status-ok --instance-ids $id'
                     env.GRAND_MASTER_PUBLIC_IP = sh(script:"aws ec2 describe-instances --region ${AWS_REGION} --filters Name=tag-value,Values=grand-master Name=tag-value,Values=${APP_STACK_NAME} --query Reservations[*].Instances[*].[PublicIpAddress] --output text", returnStdout:true).trim()
