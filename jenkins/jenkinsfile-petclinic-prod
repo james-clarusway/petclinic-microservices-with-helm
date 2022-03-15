@@ -9,9 +9,9 @@ pipeline {
         ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         RANCHER_URL="https://davids-test-rancher.clarusway.us"
         // Get the project-id from Rancher UI (petclinic-cluster-staging namespace, View in API, copy projectId )
-        RANCHER_CONTEXT="c-mjvw9:p-tchzh" 
+        RANCHER_CONTEXT="c-f9vsp:p-pz6p8" 
        //First part of projectID
-        CLUSTERID="c-mjvw9"
+        CLUSTERID="c-f9vsp"
         RANCHER_CREDS=credentials('james-credentials')
     }
     stages {
